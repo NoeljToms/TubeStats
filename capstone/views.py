@@ -13,7 +13,7 @@ from .models import User, Channel
 
 #Redirect URL for login decorator 
 login_url = "login"
-API_KEY = 'AIzaSyByFjMf9KMmwpeyzIwXYVfaD4UKOVjFoOI'
+API_KEY = '' #Include API Key Here
 def index(request):
     return render(request, "capstone/index.html")
 

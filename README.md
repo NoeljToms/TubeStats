@@ -1,6 +1,6 @@
 ## Tube Stats
 
-TubeStats is a website where you an view and save youtube channel statistics for various channels. It utilizes the YouTube API to proved statstics on total views, videos, subscribers and more. This website uses python and django to comunicate with the API and transfer information to the HTML. It also uses Javascript for asynchronous functions. As this uses the google API don't forget to look at the requirements.txt.
+TubeStats is a website where you an view and save youtube channel statistics for various channels. It utilizes the YouTube API to proved statstics on total views, videos, subscribers and more. This website uses python and django to comunicate with the API and transfer information to the HTML. It also uses Javascript for asynchronous functions. As this uses the google API don't forget to look at the requirements.txt. Note: google API Key must be filled in the capstone/views.py file.
 
 #### Features
 
