@@ -1,0 +1,2 @@
+Django==3.0.8
+google_api_python_client==1.12.8

@@ -1,0 +1,29 @@
+{% extends 'capstone/layout.html' %} {% load static %}{% block body %}
+<h2 id="watchlist" class="title" >Saved Channels</h2>
+
+{% if channels %}
+{% for channel in channels %} 
+<div class="channel">
+    <img id=pfp2 src="{{channel.img}}" alt="" id="pfp"/>
+    <a id="visit" target="_blank" href="https://www.youtube.com/channel/{{channel.channel_id}}" class="btn btn-danger">Visit Channel</a>
+    <div >
+      <form action="{% url 'watchlist' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="yeet" value="{{channel.id}}" hidden>
+        <input id="remove" type="submit" class="btn btn-dark" name="removeChannel" value="Remove"/>
+      </form>
+    </div>
+<div class="stats">
+  <ul class="list-group">
+    <li class="list-group-item"> <p id="title">{{ channel.title }}</p></li>
+    <li class="list-group-item"><p class="label">Subs: </p> <p id="subs">{{channel.subs}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Views: </p> <p id="views">{{channel.views}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Videos: </p> <p id="vids">{{channel.videos}}</p></li>
+    <li class="list-group-item"><p class="label">ID: </p> <p id="channel_id">{{channel.channel_id}}</p> </li>
+  </ul>
+</div>
+{{desc}}
+</div>
+{% endfor %}
+{% endif%} 
+{%endblock %}

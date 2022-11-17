@@ -1,0 +1,43 @@
+{% extends 'capstone/layout.html' %} {% load static %}{% block body %}
+<h2>Track New Product</h2>
+<p>Search by channel name</p>
+<form action="{% url 'search' %}" method="POST">
+  {% csrf_token %}
+  <input type="text" name="channel_name" />
+  <input type="submit" class="btn btn-primary" name="getChannelname" />
+</form>
+<p>Search by channel ID</p>
+<form action="{% url 'search' %}" method="POST">
+  {% csrf_token %}
+  <input type="text" name="channel_id" />
+  <input type="submit" class="btn btn-primary" name="getChannelid" />
+</form>
+<img src="{{img}}" alt="" id="pfp"/>
+{% if message %} {{message}} {% endif %} {% if channel_info %}
+<div id="stats">
+  <ul class="list-group">
+    <li class="list-group-item"> <p id="title">{{ channel_info }}</p></li>
+    <li class="list-group-item"><p class="label">Subs: </p> <p id="subs">{{subs}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Views: </p> <p id="views">{{views}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Videos: </p> <p id="vids">{{vids}}</p></li>
+    <li class="list-group-item"><p class="label">ID: </p> <p id="channel_id">{{id}}</p> </li>
+  </ul>
+</div>
+
+{{desc}}
+<a href="{{link}}" class="btn btn-primary">Visit Channel</a>
+<button id="saveChannel">Save Channel</button>
+{% endif%} 
+{% for vids in latest%}
+<div class='uploads'>
+  <iframe
+    width="60%" 
+    height="60%" 
+    src="https://www.youtube.com/embed/{{ vids }}" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>
+</div>
+{% endfor %}
+{%endblock %}

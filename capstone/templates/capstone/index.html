@@ -1,0 +1,61 @@
+{% extends 'capstone/layout.html' %} {% load static %}{% block body %}
+<h2 class="title">Youtube Channel Statistics</h2>
+<div id="channelNAME" class="forms">
+    <p>Search by channel name</p>
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="channel_name" />
+        <input type="submit" class="btn btn-danger" name="getChannelname" value="Search"/>
+    </form>
+</div>
+<div id="channelID" class="forms">
+    <p>Search by channel ID</p>
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="channel_id" />
+        <input type="submit" class="btn btn-danger" name="getChannelid" value="Search"/>
+      </form>
+</div>
+
+<div id="bigGroup">
+{% if message %} {{message}} {% endif %} {% if channel_info %}
+<img src="{{img}}" alt="" id="pfp"/>
+<div id="butns">
+    <a href="{{link}}" class="btn btn-danger">Visit Channel</a>
+    {% if id in savedChannels %}
+    <button id="deleteChannel" class="btn btn-dark">Remove</button>
+    {% else %}
+    <button id="saveChannel" class="btn btn-danger">Save Channel</button>
+    {% endif %}
+</div>
+
+<div id="stats" class="stats2">
+  <ul class="list-group">
+    <li class="list-group-item"> <p id="title">{{ channel_info }}</p></li>
+    <li class="list-group-item"><p class="label">Subs: </p> <p id="subs">{{subs}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Views: </p> <p id="views">{{views}}</p> </li>
+    <li class="list-group-item"><p class="label">Total Videos: </p> <p id="vids">{{vids}}</p></li>
+    <li class="list-group-item"><p class="label">ID: </p> <p id="channel_id">{{id}}</p> </li>
+    <li class="list-group-item"><p class="label">Description: </p> <p id="channel_id">{{desc}}</p></li>
+  </ul>
+</div>
+
+{% endif%} 
+<div id="vidGroup">
+    {% for vids in latest%}
+    <div class='uploads'>
+      <iframe
+        class="frame"
+        width="100%" 
+        height="100%" 
+        src="https://www.youtube.com/embed/{{ vids }}" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+{%endblock %}
